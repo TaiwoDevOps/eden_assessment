@@ -1,0 +1,65 @@
+name: eden_app
+description: A new Flutter project.
+
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.19.6 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  #firebase and network
+  firebase_core: ^2.22.0
+  firebase_auth: ^4.14.0
+
+  # UI
+  cupertino_icons: ^1.0.2
+  flutter_native_splash: ^2.2.12
+  flutter_svg: ^1.1.6
+  overlay_support: ^1.2.1
+  phosphor_flutter: ^2.0.1
+
+  # Tooling
+  flutter_dotenv: ^5.0.0
+  shared_preferences: ^2.0.15
+  local_auth: ^2.1.2
+  intl: ^0.17.0
+
+  #state management
+  provider: ^6.0.4
+  get_it: ^7.2.0
+
+dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
+  flutter_test:
+    sdk: flutter
+
+flutter_native_splash:
+  color: "#013117"
+  image: assets/png/splash_screen.png
+  fullscreen: true
+  android_12:
+    image: assets/png/splash_screen.png
+    color: "#013117"
+
+  flutter_lints: ^2.0.0
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/png/launcher.jpeg"
+  adaptive_icon_background: #ffffff
+
+flutter:
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/gif/
+    - assets/png/
+    - assets/svg/
+    - .env
