@@ -1,15 +1,13 @@
-// local persistence
-
 import 'dart:convert';
 
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:eden_app/features/auth/data/model/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const kUser = 'user';
 
 abstract class LocalStorage {
-  Future<void> cacheUserData(User? data);
-  User? getCachedUserData();
+  Future<void> cacheUserData(UserModel data);
+  UserModel getCachedUserData();
   Future<bool> clearCachedUserData();
 }
 
@@ -18,22 +16,27 @@ class LocalStorageImpl implements LocalStorage {
   SharedPreferences sharedPreferences;
 
   @override
-  Future<void> cacheUserData(User? data) async {
-    if (data == null) {
-      await sharedPreferences.remove(kUser);
+  Future<void> cacheUserData(UserModel data) async {
+    if (data.isEmpty) {
+      UserModel empty = UserModel.empty();
+      await sharedPreferences
+        ..remove(kUser)
+        ..setString(
+          kUser,
+          jsonEncode(empty.toJson()),
+        );
     } else {
-      //Note: username is 0 and email is 1
-      await sharedPreferences.setString(kUser, data.toString());
+      await sharedPreferences.setString(kUser, jsonEncode(data.toJson()));
     }
   }
 
   @override
-  User? getCachedUserData() {
+  UserModel getCachedUserData() {
     final userJson = sharedPreferences.getString(kUser);
     if (userJson == null) {
-      return null;
+      return UserModel.empty();
     }
-    final user = jsonDecode(userJson) as User;
+    final user = UserModel.fromJson(jsonDecode(userJson));
     return user;
   }
 

@@ -1,16 +1,16 @@
 import 'package:eden_app/core/di.dart';
 import 'package:eden_app/core/local_storage.dart';
 import 'package:eden_app/features/auth/data/datasource/auth_datasource.dart';
+import 'package:eden_app/features/auth/data/model/user_model.dart';
 import 'package:eden_app/utils/log_util.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AuthProvider extends ChangeNotifier {
   final Auth auth = Auth();
 
-  User? _userData;
-  User? get userData => _userData;
-  set userData(User? value) {
+  UserModel _userData = UserModel.empty();
+  UserModel get userData => _userData;
+  set userData(UserModel value) {
     _userData = value;
     notifyListeners();
   }
@@ -30,31 +30,30 @@ class AuthProvider extends ChangeNotifier {
   }
 
   init() {
-    // if user object exist, on login... welcome back user using email
-    // else, infirm user to sign up
     final userObject = sl<LocalStorage>().getCachedUserData();
-    if (userObject != null) {
+    if (!userObject.isEmpty) {
       userData = userObject;
+      Log().debug('The user data', userData.toJson());
     }
   }
 
-  Future<void> signInWithGoogle() async {
+  Future<void> signInWithGoogle(BuildContext context) async {
     loading = true;
-    final val = await auth.signInWithGoogle();
-    await handleUserData(val.user);
+    final val = await auth.signInWithGoogle(context);
+    await handleUserData(val);
     loading = false;
   }
 
   Future<void> signInWithGitHub(BuildContext context) async {
     gLoading = true;
     final val = await auth.signInWithGitHub(context);
-    await handleUserData(val.user);
+    await handleUserData(val);
 
     gLoading = false;
   }
 
-  Future<void> handleUserData(User? user) async {
-    if (user != null) {
+  Future<void> handleUserData(UserModel user) async {
+    if (!user.isEmpty) {
       userData = user;
       await sl<LocalStorage>()
         ..clearCachedUserData()
@@ -62,5 +61,9 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  //
+  Future<void> handleSignOut() async {
+    userData = UserModel.empty();
+    await auth.handleSignOut();
+    await sl<LocalStorage>().clearCachedUserData();
+  }
 }

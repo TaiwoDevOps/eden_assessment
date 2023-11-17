@@ -1,6 +1,8 @@
 import 'package:eden_app/features/auth/presentation/screens/auth_screen.dart';
+import 'package:eden_app/features/auth/presentation/vm/auth_vm.dart';
 import 'package:eden_app/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CustomCircularAvatar extends StatefulWidget {
   const CustomCircularAvatar({
@@ -24,7 +26,7 @@ class _CustomCircularAvatarState extends State<CustomCircularAvatar>
       vsync: this,
       duration: Duration(milliseconds: 250),
     );
-    _key = LabeledGlobalKey("button_icon");
+    _key = LabeledGlobalKey("button_option");
     super.initState();
   }
 
@@ -51,6 +53,7 @@ class _CustomCircularAvatarState extends State<CustomCircularAvatar>
 
   @override
   Widget build(BuildContext context) {
+    final userModel = context.watch<AuthProvider>().userData;
     return Container(
       key: _key,
       child: GestureDetector(
@@ -63,11 +66,19 @@ class _CustomCircularAvatarState extends State<CustomCircularAvatar>
         },
         child: CircleAvatar(
           maxRadius: 40,
-          backgroundColor: appColors.deepGreen,
-          backgroundImage: NetworkImage(
-            'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-            scale: 1.4,
-          ),
+          backgroundColor: appColors.white,
+          backgroundImage: userModel.photoURL.isEmpty
+              ? null
+              : NetworkImage(
+                  userModel.photoURL,
+                  scale: 1.4,
+                ),
+          child: userModel.photoURL.isEmpty
+              ? Icon(
+                  Icons.person,
+                  color: appColors.black,
+                )
+              : null,
         ),
       ),
     );
@@ -76,9 +87,11 @@ class _CustomCircularAvatarState extends State<CustomCircularAvatar>
   OverlayEntry _overlayEntryBuilder() {
     return OverlayEntry(
       builder: (context) {
+        final userModel = context.watch<AuthProvider>();
+
         return Positioned.fill(
-          top:
-              110, // app bar is using a preferred size of 80, adding extra gives the overlay a bit of space
+          top: MediaQuery.of(context).size.height /
+              10, // app bar is using a preferred size of 80, adding extra gives the overlay a bit of space
           child: Material(
             color: Colors.transparent,
             child: Stack(
@@ -117,12 +130,12 @@ class _CustomCircularAvatarState extends State<CustomCircularAvatar>
                             Icon(Icons.email, color: appColors.black),
                             const SizedBox(width: 8),
                             Text(
-                              'User@email.com',
+                              userModel.userData.email,
                               style: Theme.of(context)
                                   .textTheme
-                                  .titleMedium!
+                                  .bodySmall!
                                   .copyWith(
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w600,
                                   ),
                             ),
                           ],
@@ -133,12 +146,12 @@ class _CustomCircularAvatarState extends State<CustomCircularAvatar>
                             Icon(Icons.person, color: appColors.black),
                             const SizedBox(width: 8),
                             Text(
-                              'User Name',
+                              userModel.userData.displayName,
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyLarge!
+                                  .bodySmall!
                                   .copyWith(
-                                    fontWeight: FontWeight.w500,
+                                    fontWeight: FontWeight.w400,
                                   ),
                             ),
                           ],
@@ -159,6 +172,7 @@ class _CustomCircularAvatarState extends State<CustomCircularAvatar>
                                 MaterialPageRoute(
                                     builder: (context) => const AuthScreen()),
                                 (route) => false);
+                            userModel.handleSignOut();
                           },
                           child: Text(
                             'LogOut',

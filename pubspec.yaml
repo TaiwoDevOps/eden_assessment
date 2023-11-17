@@ -20,6 +20,7 @@ dependencies:
   github_sign_in_plus: ^0.0.2
 
   # UI
+  another_flushbar: ^1.12.30
   cupertino_icons: ^1.0.2
   flutter_native_splash: ^2.2.12
   flutter_svg: ^1.1.6
@@ -28,12 +29,13 @@ dependencies:
 
   # Tooling
   flutter_dotenv: ^5.0.0
-  shared_preferences: ^2.2.2
+  equatable: 2.0.5
   intl: ^0.17.0
+  shared_preferences: ^2.2.2
 
   #state management
-  provider: ^6.0.4
   get_it: ^7.2.0
+  provider: ^6.0.4
 
 dev_dependencies:
   flutter_launcher_icons: ^0.13.1
@@ -41,12 +43,12 @@ dev_dependencies:
     sdk: flutter
 
 flutter_native_splash:
-  color: "#013117"
-  image: assets/png/splash_screen.png
+  color: "#ffffff"
+  image: assets/png/logo.png
   fullscreen: true
   android_12:
-    image: assets/png/splash_screen.png
-    color: "#013117"
+    image: assets/png/logo.png
+    color: "#ffffff"
 
   flutter_lints: ^2.0.0
 

@@ -60,8 +60,8 @@ class _AuthScreenState extends State<AuthScreen> {
                   asset: 'assets/png/g-logo.png',
                   loading: authProvider.loading,
                   onPressed: () async {
-                    await authProvider.signInWithGoogle();
-                    if (authProvider.userData != null) {
+                    await authProvider.signInWithGoogle(context);
+                    if (!authProvider.userData.isEmpty) {
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
                               builder: (context) => const OrderScreen()),
@@ -76,7 +76,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   loading: authProvider.gLoading,
                   onPressed: () async {
                     await authProvider.signInWithGitHub(context);
-                    if (authProvider.userData != null) {
+                    if (!authProvider.userData.isEmpty) {
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
                               builder: (context) => const OrderScreen()),

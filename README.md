@@ -4,13 +4,25 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Build a simple order tracking app with Flutter using Firebase Auth and Ably Realtime. These are the features the app should have:
+The app should let users sign in with Google or GitHub using Firebase Auth.
+After signing in, the app should show a page with the signed-in user’s details and with a sample order detail as shown below:
+-- Order ID
+-- Order Date
+-- Order Item
+-- Order Quantity
+-- Order Price
 
-A few resources to get you started if this is your first Flutter project:
+## Project setup
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+    -- Flutter clean
+    -- Flutter pub get
+    -- create a (.env) file for
+        (
+            GITHUB_CLIENT_ID=
+            GITHUB_CLIENT_SECRET=
+        )
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Download APK here for sample test
+
+    --
