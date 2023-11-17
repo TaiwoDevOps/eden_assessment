@@ -15,6 +15,9 @@ dependencies:
   #firebase and network
   firebase_core: ^2.22.0
   firebase_auth: ^4.14.0
+  google_sign_in: ^6.1.6
+  google_sign_in_dartio: ^0.2.2+1
+  github_sign_in_plus: ^0.0.2
 
   # UI
   cupertino_icons: ^1.0.2
@@ -25,8 +28,7 @@ dependencies:
 
   # Tooling
   flutter_dotenv: ^5.0.0
-  shared_preferences: ^2.0.15
-  local_auth: ^2.1.2
+  shared_preferences: ^2.2.2
   intl: ^0.17.0
 
   #state management

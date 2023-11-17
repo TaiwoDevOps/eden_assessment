@@ -1,4 +1,4 @@
-package com.example.eden_app
+package com.example.edenApp
 
 import io.flutter.embedding.android.FlutterActivity
 
