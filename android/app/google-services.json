@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "277259371807",
+    "project_id": "fir-auth-5bf85",
+    "storage_bucket": "fir-auth-5bf85.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277259371807:android:0d2d5f7a7ef7b5c7ebdc2a",
+        "android_client_info": {
+          "package_name": "com.example.edenApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "277259371807-dk9lmu05pb8gni64v9pt4o3ou8vqphra.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.edenApp",
+            "certificate_hash": "63b8e99f6d000be13e006465ec2e23106458abec"
+          }
+        },
+        {
+          "client_id": "277259371807-9tpv0l7r7q82t79e2ff5v3v194n6jncm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARrWY5CQCI4AHoI6utU5If2NRawHn_ShM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "277259371807-885jd80m62kou595svui79hc9turkgos.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "277259371807-aoaokit2rau9gp47n8a6ebs1l62qfclm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.edenApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

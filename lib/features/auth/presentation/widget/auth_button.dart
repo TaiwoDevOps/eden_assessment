@@ -7,10 +7,12 @@ class SocialButton extends StatelessWidget {
     required this.asset,
     required this.title,
     required this.onPressed,
+    required this.loading,
   });
   final String title;
   final String asset;
   final void Function() onPressed;
+  final bool loading;
 
   @override
   Widget build(BuildContext context) {
@@ -31,27 +33,31 @@ class SocialButton extends StatelessWidget {
             ),
           ],
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-                clipBehavior: Clip.hardEdge,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                ),
-                child: Image.asset(
-                  asset,
-                  height: 40,
-                  width: 40,
-                )),
-            const SizedBox(width: 20),
-            Text(
-              title,
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-          ],
-        ),
+        child: loading
+            ? Center(
+                child: CircularProgressIndicator(color: appColors.white),
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                      ),
+                      child: Image.asset(
+                        asset,
+                        height: 40,
+                        width: 40,
+                      )),
+                  const SizedBox(width: 20),
+                  Text(
+                    title,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                ],
+              ),
       ),
     );
   }
