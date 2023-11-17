@@ -15,7 +15,7 @@ class OrderScreen extends StatelessWidget {
         child: Container(
           height: double.infinity,
           width: double.infinity,
-          padding: const EdgeInsets.only(bottom: 16),
+          padding: const EdgeInsets.only(bottom: 10, top: 6),
           decoration: BoxDecoration(
             color: appColors.white,
             boxShadow: [
@@ -29,36 +29,37 @@ class OrderScreen extends StatelessWidget {
           ),
           child: SafeArea(
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(width: 16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Flexible(
-                      child: Text(
-                        greet,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          greet,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineSmall!
+                              .copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: appColors.black,
+                              ),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'What would you like to order?',
                         style: Theme.of(context)
                             .textTheme
-                            .headlineMedium!
-                            .copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: appColors.black,
-                            ),
+                            .bodyLarge!
+                            .copyWith(color: appColors.black),
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'What would you like to order?',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .copyWith(color: appColors.black),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-                const SizedBox(width: 16),
                 CustomCircularAvatar()
               ],
             ),
